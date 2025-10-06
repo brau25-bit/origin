@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adivina el número</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .title {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .number {
+      margin-top: 30px;
+    }
+    #answer, #intentos, #mensaje {
+      font-size: 1.3em;
+      margin-top: 15px;
+    }
+    input {
+      padding: 8px;
+      font-size: 1em;
+      width: 150px;
+      text-align: center;
+    }
+    button {
+      padding: 8px 15px;
+      font-size: 1em;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">
+    <h1>Adivina el número (1 - 100)</h1>
+  </div>
+
+  <div class="game">
+    <input type="number" id="guess" placeholder="Ingresa un número">
+    <button id="checkBtn">Probar</button>
+  </div>
+
+  <div class="number">
+    <p id="mensaje"></p>
+    <p id="answer"></p>
+    <p id="intentos"></p>
+  </div>
+
+  <script>
+    const min = 1;
+    const max = 100;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    let intentos = 0;
+    let gameOver = false;
+
+    document.getElementById("checkBtn").addEventListener("click", function(){
+      if (gameOver) return;
+
+      let num = Number(document.getElementById("guess").value);
+
+      if(isNaN(num) || num < min || num > max){
+        document.getElementById("mensaje").textContent = "⚠️ Ingresa un número válido entre " + min + " y " + max;
+        return;
+      }
+
+      intentos++;
+
+      if(num > randomNumber){
+        document.getElementById("mensaje").textContent = "📈 Muy alto, intenta con un número más pequeño";
+      } else if(num < randomNumber){
+        document.getElementById("mensaje").textContent = "📉 Muy bajo, intenta con un número más grande";
+      } else {
+        document.getElementById("mensaje").textContent = "🎉 Felicidades, adivinaste el número!";
+        document.getElementById("answer").textContent = "El número correcto era: " + randomNumber;
+        document.getElementById("intentos").textContent = "Te tomó " + intentos + " intentos.";
+        gameOver = true;
+      }
+
+      document.getElementById("guess").value = "";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Crea una función saludar(nombre, callback) que pase el nombre transformado a mayúsculas al callback.
+        saludar("Braulio", toUpper)
+
+        function saludar(nombre, callback){
+            console.log(callback(nombre));
+        }
+
+        function toUpper(element){
+            return element.toUpperCase();
+        }
+
+
+        //Crea una función procesarLista(lista, callback) que espere 1 segundo y llame al callback pasando solo los números pares de la lista.
+        const lista = [1,2,3,4,5];
+
+        function procesarLista(lista, callback){
+            setTimeout( () => {
+                callback(lista.filter(n => n%2===0));
+            }, 1000);
+        }
+
+        procesarLista(lista, even => {
+            console.log(even);
+        });
+
+
+        //Crea una función transformarArray(array, callback) que use map para aplicar la operación del callback a cada elemento.
+        const array = [1,2,3];
+        function transformarArray(array, callback){
+            callback(array);
+        }
+
+        transformarArray(array, resultado => {
+            let newResult = resultado.map(n => n*2);
+            console.log(newResult);
+        })
+
+
+        //Dado un arreglo de palabras, crea una función contarVocalesPalabras(array, callback) que llame al callback por cada palabra pasando la palabra y el número de vocales que tiene.
+        const arrayPalabras = ["hola", "escuela"];
+
+        function contarVocalesPalabras(array, callback){
+            callback(array);
+        }
+
+        contarVocalesPalabras(arrayPalabras, resultado => {
+            resultado.forEach(element => {
+
+                const minusculas = element.toLowerCase();
+                let contador = 0;
+                for (let char of minusculas) {
+                    if ("aeiou".includes(char)) {
+                        contador++;
+                    }
+                }
+                
+                console.log(`${element} tiene ${contador} vocales`);
+
+            });
+        })
+
+
+        //Crea una función sumarArrays(callback, ...arrays) que combine cualquier cantidad de arreglos numéricos usando rest y spread y llame al callback con la suma total de todos los números.
+        function sumarArrays(callback, ...arrays) {
+            
+            const combinado = [].concat(...arrays);
+
+            const sumaTotal = combinado
+                .filter(item => typeof item === "number")
+                .reduce((acum, num) => acum + num, 0);
+
+            
+            callback(sumaTotal);
+        }
+
+        const a = [1, 2, 3];
+        const b = [4, 5];
+        const c = [6, "hola", 7];
+        
+
+        sumarArrays(total => {
+            console.log("La suma total es:", total);
+        }, a, b, c);
+
+
+    </script>
+</body>
+</html>

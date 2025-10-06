@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //numero 1- Crea una función suma(...numeros) que reciba cualquier cantidad de números y devuelva la suma total.
+        const numeros = [1,2,3,4,5,6,7,8,9];
+
+        function suma(...numeros){
+            return numeros.reduce((acum, num) => {
+                return acum + num;
+            }, 0);
+        }
+
+        console.log(suma(...numeros));
+
+        //numero 2 - Tienes dos arreglos: a = [1, 2, 3] y b = [4, 5] usa spread para combinarlos en un solo arreglo y luego imprime el resultado.
+        const a = [1, 2, 3];
+        const b = [4, 5];
+
+        const c = [...a,...b]
+        console.log(c);
+
+        //numero 3 - Dado un arreglo de nombres, usa forEach para imprimirlos en mayúsculas.
+        const nombres = ["braulio", "flor", "ignacio", "guadalupe"];
+        nombres.forEach(element => {
+            console.log(element.toUpperCase());
+        }); 
+
+        //numero 4 - Filtrar y mapear números pares, De un arreglo de enteros, obtén con filter solo los pares. Luego con map crea un nuevo arreglo donde cada par se eleve al cuadrado.
+        const numerosE = [1,2,3,4,5,6,7,8,9];
+
+        const newArrayNum = numerosE.filter(isEven).map(n => n*n);
+
+        function isEven(element){
+            return element % 2 === 0;
+        }
+
+        console.log(newArrayNum);
+
+        //numero 5 - opiar y modificar objetos con spread. Tienes un objeto persona con nombre y edad. usa spread para crear una copia que además incluya una nueva propiedad ciudad.
+
+        const persona = [
+            {
+                nombre : "braulio",
+                edad : 23
+            }
+        ];
+
+        const personaCiudad = [{ ...persona[0], ciudad: "CDMX" }];
+
+        console.log(personaCiudad);
+
+        //numero 6 - Rest + promedio. Crea una función promedio(...nums) que reciba cualquier cantidad de números y devuelva el promedio.
+
+        const calificaciones = [7,8,6,9,5];
+
+        console.log(promedio(...calificaciones)); // 7
+
+        function promedio(...calificaciones) {
+            const suma = calificaciones.reduce((a, b) => a + b, 0);
+            return suma / calificaciones.length;
+        }
+
+        //numero 7 - forEach contador de vocales. Dado un arreglo de palabras, usa forEach para contar cuántas vocales tiene cada palabra y muestra el resultado.
+
+        const palabras = ["Hola", "Mundo", "JavaScript"];
+
+        palabras.forEach(palabra => {
+            // Convertimos a minúsculas para simplificar la comparación
+            const minusculas = palabra.toLowerCase();
+            
+            // Contamos las vocales
+            let contador = 0;
+            for (let char of minusculas) {
+                if ("aeiou".includes(char)) {
+                    contador++;
+                }
+            }
+            
+            console.log(`${palabra} tiene ${contador} vocales`);
+        });
+
+        //numero 8 - Callback en función asíncrona simulada. Crea una función procesarDato(dato, callback) que espere 2 segundos (usa setTimeout) y luego llame al callback con el dato en mayúsculas.
+
+        function procesarDato(dato, callback) {
+            setTimeout(() => {
+                callback(dato.toUpperCase());
+            }, 2000);
+        }
+
+        procesarDato("hola mundo", resultado => {
+            console.log("Resultado:", resultado);
+        });
+
+        //numero 9 - Dado un arreglo de objetos {nombre, edad}, usa filter para quedarte con los mayores de 18, luego map para obtener solo los nombres y finalmente forEach para imprimirlos.
+
+        const personas = [
+            { nombre: "Ana", edad: 17 },
+            { nombre: "Braulio", edad: 23 },
+            { nombre: "Luis", edad: 19 },
+            { nombre: "Marta", edad: 16 }
+        ];
+
+        personas
+            .filter(p => p.edad > 18)      // filtra mayores de 18
+            .map(p => p.nombre)             // obtiene solo nombres
+            .forEach(nombre => console.log(nombre)); // imprime cada nombre
+
+        // Salida:
+        // Braulio
+        // Luis
+
+        //numero 10 - Crea una función que reciba cualquier cantidad de arreglos (...arrays), los combine, filtre solo los valores numéricos y devuelva un arreglo con cada número multiplicado por 10.
+
+        function combinarYProcesar(...arrays) {
+            // Combinar todos los arreglos
+            const combinado = [].concat(...arrays);
+
+            // Filtrar solo números y multiplicar por 10
+            return combinado
+                .filter(item => typeof item === "number")
+                .map(num => num * 10);
+        }
+
+        // Ejemplo de uso
+        const n = [1, "hola", 3];
+        const m = [4, 5, "mundo"];
+        const e = ["JS", 2];
+
+        console.log(combinarYProcesar(n, m, e));
+        // Salida: [10, 30, 40, 50, 20]
+
+
+    </script>
+</body>
+</html>

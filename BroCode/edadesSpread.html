@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="textBox" placeholder="Ingresa tu edad">
+    <button id="agregarBtn">Agregar</button>
+    <p>Edades ingresadas: <span id="subResult">[]</span></p>
+
+    <script>
+    let edades = []; // array inicial vacío
+
+    document.getElementById("agregarBtn").addEventListener("click", () => {
+        const edadPersona = Number(document.getElementById("textBox").value);
+
+        if (!isNaN(edadPersona) && edadPersona > 0 && edadPersona < 100) {
+            // agregamos la nueva edad usando spread
+            edades = [...edades, edadPersona];
+            document.getElementById("subResult").textContent = JSON.stringify(edades);
+            document.getElementById("textBox").value = ""; // limpiamos input
+        } else {
+            alert("Ingresa un número válido");
+        }
+    });
+    </script>
+</body>
+</html>

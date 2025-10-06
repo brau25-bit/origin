@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Escribe una función que reciba una cadena y devuelva la misma cadena sin espacios en blanco al inicio ni al final, y con todas las letras en minúsculas.*/
+        function reWrite(string){
+            let text = string.trim().toLowerCase();
+
+            console.log(text);
+        }
+
+        reWrite(" Hola como estas! ")
+
+        /*Crea una función que, dado un arreglo de números, devuelva un nuevo arreglo con cada número multiplicado por su posición en el arreglo usando map.*/
+        function numeroPor(...array) {
+            return array.map((element, index) => element * index);
+        }
+
+        let num = [1,2,3];
+        console.log(numeroPor(...num));
+
+        /*Haz una función que cuente cuántas veces aparece cada letra en una cadena y devuelva un objeto con la letra como clave y la cantidad como valor.*/
+        
+        function contarLetras(cadena) {
+        const resultado = {};// objeto donde guardaremos las cuentas
+        const texto = cadena.toLowerCase();// opcional: todo en minúsculas para no duplicar mayúsculas/minúsculas
+
+        for (const char of texto) {// recorremos cada carácter
+            if (char === " ") continue;// ignorar espacios, si lo deseas
+            resultado[char] = (resultado[char] || 0) + 1;
+        }
+
+        return resultado;
+        }
+
+        console.log(contarLetras("Hola mundo"));
+
+        /*Escribe una función que reciba un arreglo de palabras y devuelva otro arreglo solo con las que empiecen con la letra “a” usando filter.*/
+
+        function letterA(array){
+            return array.filter(n => n[0] === "a")
+        }
+
+        let words = ["aba", "hola", "adios"];
+        console.log(letterA(words));
+
+        /*Crea una función que reciba cualquier cantidad de números como argumentos y devuelva el mayor de todos usando el operador rest.*/
+
+        function numMayor(...num){
+            console.log(Math.max(...num));
+        }
+
+        numMayor(1,2,3,4,5);
+
+        /*Diseña una función que reciba un objeto persona con nombre y edad y devuelva una copia del objeto agregando una propiedad mayor cuyo valor sea un operador ternario que indique si tiene 18 años o más.*/
+        function agregarMayor(persona) {
+            // devolvemos una **copia** del objeto usando spread
+            return {
+                ...persona,
+                mayor: persona.edad >= 18 ? "Sí" : "No"
+            };
+        }
+
+        const persona1 = { nombre: "Braulio", edad: 23 };
+        const persona2 = { nombre: "Luis", edad: 15 };
+
+        console.log(agregarMayor(persona1));
+
+        console.log(agregarMayor(persona2));
+        
+        console.log(persona2);
+
+        /*Haz una función que use un bucle for para sumar los números del 1 al 100 e imprima el resultado.*/
+
+        function sum(){
+            for(let i=1; i<=100; i++){
+                console.log(i);
+            }
+        }
+
+        sum();
+        /*Escribe una función que reciba un arreglo de frases y, usando forEach, imprima cada frase con el número de caracteres que contiene.*/
+
+        function frases(words) {
+            words.forEach(element => {
+                const sinEspacios = element.replace(/\s/g, ''); // elimina todos los espacios
+                console.log(`La frase es: "${element}" y contiene ${sinEspacios.length} caracteres (sin espacios)`);
+            });
+        }
+
+
+        let fras = ["hola como estas ", "estoy bien amigo", "no se programar"];
+        frases(fras);
+
+        /*Crea una función que use un ciclo while para generar un arreglo con los primeros diez números pares.*/
+        function even(){
+            let evenNums = [];
+            let cont = 1;
+            while(evenNums.length <10){
+                 if(cont % 2 === 0) {evenNums.push(cont)}; 
+                 cont++;
+            }
+
+            console.log(evenNums);
+        }
+
+        even();
+
+        //--------------------------------------------------------------------
+        function add(nombres) {
+            return nombres
+            .map(nombre => nombre.toUpperCase())
+            .join(", "); 
+        }
+
+        let nom = ["braulio", "diego", "flor", "ignacio", "maria"];
+        console.log(add(nom));
+
+        /*Escribe una función que acepte una cadena y un carácter, y devuelva cuántas veces aparece ese carácter en la cadena sin distinguir mayúsculas.*/
+
+        function cadenaChar(text, char){
+            let cont = 0;
+            for(const c of text){
+                if(c === char){cont++;}
+            }
+
+            console.log(`the character ${char} appears ${cont}`);
+        }
+
+        cadenaChar("Hola me llamo braulio", "a");
+
+        /*Crea una función que combine dos arreglos en uno solo sin elementos repetidos utilizando el operador spread y filter.*/
+        function sumArrays(arr1, arr2) {
+            const combinado = [...arr1, ...arr2];               // unimos los arreglos
+            const sinDuplicados = combinado.filter((valor, indice) => {
+                return combinado.indexOf(valor) === indice;      // solo dejamos la primera aparición
+            });
+            return sinDuplicados;
+        }
+
+        console.log(sumArrays([1,2,3], [1,2,3,4,5]));
+        // Resultado: [1, 2, 3, 4, 5]
+
+
+        /*Diseña una función que, usando map, convierta un arreglo de números en un arreglo de objetos con las propiedades original y cuadrado.*/
+        function objects(array){
+            return array.map(element => {
+                return {
+                    original : element, 
+                    cuadrado : element * 2, 
+                }
+            });
+        }
+
+        let num3 = [1,2,3,4,5];
+        console.log(objects(num3));
+
+        /*Haz una función que reciba un arreglo de números y un callback, y llame al callback con un nuevo arreglo que contenga solo los números mayores que la media del arreglo.*/
+
+        function numCall(numeros, callback) {
+            const numerosNuevos = callback(numeros);
+            console.log(numerosNuevos);
+        }
+
+        // Callback que filtra los números mayores a la media
+        function filtrarMayorMedia(numeros) {
+            const suma = numeros.reduce((a, b) => a + b, 0);
+            const media = suma / numeros.length;
+            return numeros.filter(n => n > media);
+        }
+
+        // Ejemplo
+        const num4 = [1, 2, 3, 4, 5, 6];
+        numCall(num4, filtrarMayorMedia); // [4, 5, 6]
+
+
+        /*Escribe una función que, dado un arreglo de strings, devuelva otro arreglo con las mismas cadenas pero en orden inverso y cada una invertida carácter por carácter.*/
+
+        function invertirCadenas(arr) {
+            return arr
+            .map(str => str.split("").reverse().join(""))  // invertimos cada cadena
+            .reverse();                                     // invertimos el orden del arreglo
+        }
+
+        // Ejemplo
+        const cadenas = ["hola", "mundo", "amigo"];
+        console.log(invertirCadenas(cadenas));
+        // Resultado: ["ogima", "odnum", "aloh"]
+            
+    </script>
+</body>
+</html>

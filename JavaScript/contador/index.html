@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador DOM Mejorado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        /* Colores dinámicos */
+        .positivo { color: green; }
+        .negativo { color: red; }
+        .neutro { color: black; }
+        /* Animación */
+        .animar {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="contador" class="neutro">0</h1>
+    <button id="incrementar">+</button>
+    <button id="decrementar">-</button>
+    <button id="resetear">Reset</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

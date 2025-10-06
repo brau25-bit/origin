@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rest & Spread JS</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        max-width: 600px;
+    }
+    h1 { text-align: center; color: #333; }
+    .section {
+        margin: 15px 0;
+        padding: 12px;
+        border-left: 5px solid #4CAF50;
+        background: #f0f8ff;
+        border-radius: 8px;
+    }
+    code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+    .output {
+        margin-top: 8px;
+        padding: 8px;
+        background: #e8f5e9;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Diagrama Rest & Spread JS</h1>
+
+    <div class="section">
+        <strong>Rest Parameters</strong> (junta argumentos en un array)
+        <pre><code>
+function sumar(...numeros) {
+  return numeros.reduce((a,b)=>a+b,0);
+}
+        </code></pre>
+        <div class="output" id="restOutput"></div>
+    </div>
+
+    <div class="section">
+        <strong>Spread Operator</strong> (expande arrays u objetos)
+        <pre><code>
+const arr1 = [1,2];
+const arr2 = [3,4];
+const combinado = [...arr1,...arr2];
+        </code></pre>
+        <div class="output" id="spreadOutput"></div>
+    </div>
+
+    <div class="section">
+        <strong>Combinando Rest + Spread</strong>
+        <pre><code>
+function agregarAmigos(persona, ...amigos) {
+  return {...persona, amigos};
+}
+        </code></pre>
+        <div class="output" id="comboOutput"></div>
+    </div>
+</div>
+
+<script>
+    // Rest example
+    function sumar(...numeros) {
+        return numeros.reduce((a,b)=>a+b,0);
+    }
+    document.getElementById('restOutput').innerText = `sumar(2,3,5) => ${sumar(2,3,5)}`;
+
+    // Spread example
+    const arr1 = [1,2];
+    const arr2 = [3,4];
+    const combinado = [...arr1,...arr2];
+    document.getElementById('spreadOutput').innerText = `arr1 + arr2 => [${combinado}]`;
+
+    // Rest + Spread example
+    const persona = {nombre:"Ana",edad:25};
+    function agregarAmigos(persona,...amigos){
+        return {...persona, amigos};
+    }
+    const nuevaPersona = agregarAmigos(persona,"Luis","Marta");
+    document.getElementById('comboOutput').innerText = JSON.stringify(nuevaPersona);
+</script>
+</body>
+</html>

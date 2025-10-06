@@ -1,0 +1,17 @@
+/* Write your code here: */
+h1,h2{
+    color: blueviolet;
+}
+.box > p{ /*solo selecciona el primer hijo del elemento padre*/
+    color: firebrick;
+}
+.box li{/*selecciona todos los li dentro de la clase box*/
+    color: blue;
+}
+li.done{/*selecciona de una manera mas especifica, en este caso le esta diciendo que al li que tenga la clase done le aplique cierto color.
+primero se debe de agregar la etiqueta y despues las clases o id*/
+    color: seagreen;
+}
+ul p.done{
+    font-size: 0.5rem;
+}

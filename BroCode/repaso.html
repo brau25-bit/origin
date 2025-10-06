@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Ejercicio 1 - Manipulación de strings: Crea una función que reciba una frase y devuelva la misma frase con la primera letra de cada palabra en mayúscula.
+
+        /* otra solucio en lugar del forEach
+            return text
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+        */
+        let text1 = "hola como estas amigo!";
+
+        function toUpper(text){
+            let newText = "";
+            let string = text.split(" ").forEach(element => {
+                let str1 = element.charAt(0).toUpperCase() + element.slice(1);
+                newText += str1 + " ";
+            });
+            console.log(newText);
+        }
+
+        toUpper(text1);
+
+        //ejercicio 2 - Contador de vocales con for: Pide una palabra y usa un bucle for para contar cuántas vocales tiene.
+        /* otra forma de hacerlo
+        const text2 = "braulio";
+        const count = [...text2].filter(ch => "aeiou".includes(ch.toLowerCase())).length;
+        console.log(count);
+        */
+
+        const text2 = "braulio";
+
+        let count = 0;
+        const vowels = "aeiou";   // cadena con las vocales
+
+        for (let i = 0; i < text2.length; i++) {
+        const ch = text2[i].toLowerCase(); // por si hay mayúsculas
+        if (vowels.includes(ch)) {         // includes simplifica la comparación
+            count++;
+        }
+        }
+
+        console.log(`Vocales encontradas: ${count}`);
+
+        //ejercicio 3 - Haz una función que invierta el orden de las letras de un texto usando un ciclo while.
+        function reverseString(text){
+            let cont = text.length;
+            let reversed = "";
+            while(cont != 0){
+                reversed += text[cont-1];
+                cont--;
+            }
+            console.log(reversed)
+        }
+
+        reverseString("hola");
+
+        // ejercicio 4 - Desarrolla una función que, dado un número del 1 al 7, devuelva el día de la semana correspondiente usando un switch.
+        function dayOfWeek(day){
+            switch (day) {
+                case 1:
+                    console.log("it's monday!")
+                    break;
+                case 1:
+                    console.log("it's tuesday!")
+                    break;
+                case 1:
+                    console.log("it's wednesday!")
+                    break;
+                case 1:
+                    console.log("it's thursday!")
+                    break;
+                case 1:
+                    console.log("it's friday!")
+                    break;
+                case 1:
+                    console.log("it's saturday!")
+                    break;
+                case 1:
+                    console.log("it's sunday!")
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        dayOfWeek(1);
+
+        // ejercicio 5 - Crea una función que reciba un arreglo de nombres y salude a cada uno con un mensaje en la consola utilizando forEach.
+        function names(...nameP){
+            nameP.forEach(element => {
+                console.log("Hello, " + element);
+            });
+        }
+
+        let nameP = ["braulio", "Flor", "diego"];
+        names(...nameP);
+
+        // ejercicio  6 - Construye una función que reciba un arreglo de números, filtre solo los pares y devuelva un nuevo arreglo con esos números elevados al cuadrado usando filter y map.
+        let nums = [1,2,3,4,5];
+
+        function isEvenReturn(nums){
+            return nums.filter(i => i%2 === 0).map(n => n*2);
+        }
+
+        console.log(isEvenReturn(nums));
+
+        // ejercicio  7 - Escribe una función que acepte cualquier cantidad de arreglos de números, los combine en uno solo y devuelva la suma total de todos los elementos usando operadores rest y spread.
+        // Función que recibe cualquier cantidad de arreglos
+        function sumaTotal(...arrays) {
+            // Combina todos los arreglos en uno solo usando spread 
+            // const combinado = arrays.flat();
+            const combinado = [].concat(...arrays);
+
+            // Suma todos los elementos
+            const total = combinado.reduce((acc, num) => acc + num, 0);
+
+            return total;
+        }
+
+        // Ejemplo de uso
+        console.log(sumaTotal([1, 2], [3, 4, 5], [6])); // 21
+
+
+        // ejercicio  8 - Crea una función que determine si una persona es mayor o menor de edad utilizando un operador ternario.
+        function edadLegal(edad){
+            return edad>18 ? "Mayor de edad" : "Menor de edad";
+        }
+
+        console.log(edadLegal(17));
+
+        // ejercicio 9 - Haz una función que reciba un nombre y un callback, genere el mensaje “Hola, <nombre>” en mayúsculas y lo pase al callback.
+            function nombrePersona(nombre, callback){
+                nombre = nombre.toUpperCase();
+                callback(nombre);
+            }
+
+            function imprimir(nombre){
+                console.log("Hola, " + nombre);
+            }
+
+            nombrePersona("Braulio", imprimir)
+
+        // ejercicio 10 - Escribe una función que, después de dos segundos de espera, llame a un callback con una lista de cadenas ordenadas alfabéticamente.
+        function cadenas(cadena, orden){
+            setTimeout(() => {
+                console.log(orden(cadena));
+            }, 2000);
+        }
+
+        function cadenaOrdenada(cadena){
+            return cadena.sort();
+        }
+
+        let strings = ["braulio", "alberto"];
+        cadenas(strings, cadenaOrdenada);
+
+        // ejercicio 11 - Crea una función que reciba un arreglo de oraciones, elimine los espacios sobrantes y convierta cada oración a mayúsculas usando métodos de cadena y map.
+        // pseudocódigo guía
+        function oraciones(oracionesArray) {
+            return oracionesArray.map(oracion => 
+                oracion.trim().toUpperCase()
+            );
+        }
+
+
+        let oracions = [" holaa como estas ", "estoy bien hijo de perra"];
+        console.log(oraciones(oracions))
+
+        // ejercicio 12 - Desarrolla una función que busque un número dentro de un arreglo usando un bucle for, imprima su posición si lo encuentra y devuelva el índice o -1 si no existe.
+        function numero(num, arr) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === num) {
+                    console.log("Número encontrado en posición:", i);
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+
+        let nums1 = [1,2,3,4,5,6];
+        console.log(numero(3, nums1));
+
+        // ejercicio 13 - Escribe una función que recorra un arreglo de números con un while y devuelva solo aquellos mayores que diez.
+        function numerosWhile(nums1){
+            let cont = 0;
+            let newNums = [];
+            while (cont < nums1.length) {
+                if(nums1[cont]>10){
+                    newNums.push(nums1[cont]);
+                }
+                cont++;
+            }
+
+            return newNums;
+        }
+
+        console.log(numerosWhile([1,2,3,4,11]));
+
+        // ejercicio 14 - Crea una función que copie un objeto persona y agregue una nueva propiedad de ciudad utilizando el operador spread.
+        let persona = 
+            {
+                nombre : "Braulio", 
+                edad : 22
+            };
+
+        function add(persona) {
+            // Creamos un nuevo objeto copiando todo el original y agregando ciudad
+            let personaNueva = { ...persona, ciudad: "cdmx" };
+            return personaNueva;
+        }
+
+        let personaConCiudad = add(persona);
+        console.log(personaConCiudad);
+
+        // ejercicio 15 - Diseña una función que analice un texto, cuente el número de palabras, determine si tiene más de veinte palabras y envíe esa información a un callback en un objeto con las propiedades palabras y esLargo.
+        // Función que analiza el texto
+        function textAnalizer(text, callback) {
+            // Separa las palabras y quita espacios sobrantes
+            let words = text.trim().split(/\s+/);
+            
+            // Determina si tiene más de 20 palabras
+            let esLargo = words.length > 20;
+
+            // Envía la información al callback como objeto
+            callback({ palabras: words, esLargo: esLargo });
+        }
+
+        // Callback que recibe el objeto
+        function miCallback(info) {
+            console.log("Palabras:", info.palabras);
+            console.log("Total de palabras:", info.palabras.length);
+            console.log("Es largo?:", info.esLargo);
+        }
+
+        // Ejemplo de uso
+        textAnalizer(
+            "Hola me llamo Braulio y soy de la ciudad de México, me gusta programar y aprender cosas nuevas todos los días.",
+            miCallback
+        );
+
+
+    </script>
+</body>
+</html>
