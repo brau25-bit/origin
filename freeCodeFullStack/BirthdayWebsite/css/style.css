@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Happy monkey", "sans serif";
+    background: linear-gradient(rgb(78, 38, 78), orange);
+    color: aliceblue;
+}
+#nickPic{
+    max-width: 200px;
+    border-radius: 50%;
+    border: 5px solid palevioletred;
+}
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.txt{
+    text-shadow: 0px 0px 1px black;
+}
+#txtOld, #txtAge{
+    background-color: palevioletred;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.gift{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.titleGift{
+    font-size: 2em;
+}
+.secret{
+    font-size: 1em;
+}
+.giftCover{
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    cursor: pointer;
+    border: 5px solid white;
+    border-radius: 4px;
+    background-image: url("../img/gift-cover.jpg");
+    background-size: cover;
+}
+#gif1:hover{
+    cursor: pointer;
+    background-image: url("../img/badass.gif");
+    background-size: cover;
+}
+#gif2:hover{
+    cursor: pointer;
+    background-image: url("../img/cheers.gif");
+    background-size: cover;
+}
+#gif3:hover{
+    cursor: pointer;
+    background-image: url("../img/genius.gif");
+    background-size: cover;
+}
+#gif4:hover{
+    cursor: pointer;
+    background-image: url("../img/happy.gif");
+    background-size: cover;
+}
+#gif5:hover{
+    cursor: pointer;
+    background-image: url("../img/hot.gif");
+    background-size: cover;
+}
+#foot{
+    text-align: center;
+    font-size: 2em;
+}
